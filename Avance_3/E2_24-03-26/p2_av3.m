@@ -1,6 +1,6 @@
 function p2_av3
-  a = [2,1,1;4,-6,0;-2,7,2];
-  b = [5;-2;9];
+  a = [0,2,1;1,1,2;2,0,1];
+  b = [3;2;1];
 
   matAumentada = [a,b]
 
@@ -12,6 +12,21 @@ endfunction
 
 function [U, x] = eliminacionGaussina (matAumentada, m)
   for k = 1:m-1
+
+    %Buscamos un pivote adecuado para resolver la matriz
+    columna_relevante = abs(matAumentada(k:m, k));
+    [valor_max, indice_relativo] = max(columna_relevante);
+    %obtenemos la final real dentro de la matriz
+    p = indice_relativo + k - 1;
+
+    if valor_max == 0
+      error("La matriz no tiene solución única (columna de ceros).");
+      break
+    endif
+
+    if p ~= k
+      matAumentada([k, p], :) = matAumentada([p, k], :);
+    endif
 
     for i = k+1:m
       m_ik = matAumentada(i,k)/matAumentada(k,k);
