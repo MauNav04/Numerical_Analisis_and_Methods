@@ -10,7 +10,7 @@ function p4_av3
   tol = 1e-8;
   max_iter = 1000;
 
-  [x, err, k] = gauss_seidel(A, b, x0, tol, max_iter);
+  [~, err, k] = gauss_seidel(A, b, x0, tol, max_iter);
 
   fprintf('Error final ||Ax-b||_2 = %.12e\n', err);
 
@@ -38,14 +38,15 @@ function [x, err, k] = gauss_seidel(A, b, x0, tol, max_iter)
             %Cabe denotar que el vector x se actualiza en cada iteración de FILA.
             suma1 = A(i,1:i-1) * x(1:i-1);
 
-            %Nuevamente por cada fila vamos sumando los valores de la matriz U (de L+D+U)
-            %y lo multiplicamos por el respectivo resultado en x del vector de valores "previo"
+            %Nuevamente por cada fila vamos sumando los coeficientes por encima de la diagonal,
+            %que corresponden a la parte 𝑈 y lo multiplicamos por el respectivo
+            %resultado en x del vector de valores "previo"
             suma2 = A(i,i+1:n) * x_old(i+1:n);
 
             %Forma final de la fórmula de Gauss-Seidel implementada.
             %Despejamos entonces el valor de x(i), se actualiza en el vector x,
             %este se usará para despejar el x(i+1) para la siguiente fila en
-            %la siguiente iteraciónn de FILA
+            %la siguiente iteración de FILA.
             x(i) = (b(i) - suma1 - suma2) / A(i,i);
         end
 
