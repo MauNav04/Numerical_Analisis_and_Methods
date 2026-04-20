@@ -16,10 +16,9 @@ function p2_av3
   error_final = norm(coefs*x - results, 2);
   disp(error_final);
 
-  %x = U\b
-
 endfunction
 
+%Función para crear el vector de resultados segun se solicita
 function results = resVector()
   m = 1000;
   results = zeros(m,1);
@@ -28,6 +27,7 @@ function results = resVector()
   endfor
 endfunction
 
+%Función para crear la matriz diagonal segun se solicita
 function coefs = matDiagonal()
   vecbase = ones(1000,1);
   vecDiagPrinc = 5*vecbase;
@@ -54,6 +54,12 @@ endfunction
 
 function [U, b] = eliminacionGaussina (matAumentada, m)
   for k = 1:m-1
+
+    %======================================================================
+    %Funcionaliad de pivote para generalizar la eliminacionGaussina
+    %======================================================================
+    %Estas funciones se añadieron pero luego se notó que no eran necesarias y relentizaban
+    %el código. Se dejan comentadas en caso de ser utiles a futuro.
 
     %Buscamos un pivote adecuado para resolver la matriz
     %columna_relevante = abs(matAumentada(k:m, k));
