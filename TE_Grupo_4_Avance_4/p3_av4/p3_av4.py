@@ -13,7 +13,6 @@ def metodo_qr(A, tol, max_iter):
 
         xk_new = np.diag(Ak).copy()
 
-        # ✅ Error correcto: norma 1 de la diferencia del VECTOR de valores propios
         ek = np.linalg.norm(xk_new - xk, ord=1)
 
         xk = xk_new
