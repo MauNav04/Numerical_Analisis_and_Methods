@@ -1,5 +1,11 @@
 % Resolución mediante el algoritmo de Thomas
 
+% ==================================== NOTA ====================================
+% Los RESULTADOS DE LA CONSOLA se guardan en un archivo de texto externo llamado
+% "resultados_edo2_.txt" ya que son demasiado extensos y en la consola no se
+% pueden apreciar correctamente.
+% ==============================================================================
+
 function p2_av5()
   diary("resultados_edo2.txt");
   diary on;
