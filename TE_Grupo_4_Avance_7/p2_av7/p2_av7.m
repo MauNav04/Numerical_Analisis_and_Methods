@@ -1,4 +1,6 @@
 function p2_av7()
+  format long
+
   f = @(x) cos(x).*exp(x);
   a = 2;
   b = 5;
